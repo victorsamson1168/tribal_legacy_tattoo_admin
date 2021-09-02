@@ -1,0 +1,21 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+
+}
+.image{
+    max-width: 30vw;
+    height: 100px;
+}
+.loader{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    height: auto;
+  }
