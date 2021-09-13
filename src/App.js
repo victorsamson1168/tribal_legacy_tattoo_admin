@@ -49,7 +49,7 @@ function App() {
     console.log(selectedFile);
     setLoader(true);
     const uploadTask = storage
-      .ref(`images/${selectedFile.name+"_"+selectedFile.lastModified}`)
+      .ref(`images/${selectedFile.lastModified + "_" + selectedFile.name}`)
       .put(selectedFile);
     uploadTask.on(
       "state_changed",
@@ -62,8 +62,8 @@ function App() {
       () => {
         // complete function ...
         storage
-          .ref("images")
-          .child(selectedFile.name)
+          .ref(`images/${selectedFile.lastModified + "_" + selectedFile.name}`)
+          // .child(`images/${selectedFile.lastModified+"_"+selectedFile.name}`)
           .getDownloadURL()
           .then((url) => {
             console.log(url);
@@ -76,12 +76,18 @@ function App() {
               .then((res) => {
                 console.log(res);
                 fetchData();
+                setWidth("");
+                setHeight("");
+                setSelectedFile("");
                 message.success("successfully added");
                 setLoader(false);
               })
               .catch((err) => {
                 console.log(err);
                 fetchData();
+                setWidth("");
+                setHeight("");
+                setSelectedFile("");
                 message.error("something went wrong");
                 setLoader(false);
               });
